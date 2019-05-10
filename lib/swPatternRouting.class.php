@@ -32,7 +32,7 @@ class swPatternRouting extends sfPatternRouting
   {
 
    // fetch from cache
-    if (!is_null($this->cache))
+    if ($this->cache !== null)
     {
       $cacheKey = 'generate_'.$name.'_'.md5(serialize(array_merge($this->defaultParameters, $params))).'_'.md5(serialize($this->options['context']));
 
@@ -68,7 +68,7 @@ class swPatternRouting extends sfPatternRouting
 
       if (is_string($route))
       {
-        $route = $this->loadRoute($name);
+          $route = unserialize($route);
       }
       $route->setDefaultParameters($this->defaultParameters);
     }
